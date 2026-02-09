@@ -11,8 +11,9 @@ int main()
     UserRepository userRepo;
     LoanRepository loanRepo;
     NormalFineStrategy fineStrategy;
+    PaymentFactory paymentFactory;
 
-    LoanService loanService(&loanRepo, &fineStrategy);
+    LoanService loanService(&loanRepo, &fineStrategy, &paymentFactory);
     LibraryService library(&bookRepo, &userRepo, &loanService);
 
     User *u = new User("Raj", UserRole::MEMBER);

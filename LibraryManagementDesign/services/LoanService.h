@@ -4,6 +4,7 @@
 #include "../strategies/FineStrategy.h"
 #include "../models/User.h"
 #include "../models/BookItem.h"
+#include "../factory/PaymentFactory.h"
 
 using namespace std;
 
@@ -12,9 +13,10 @@ class LoanService
 private:
     LoanRepository *lr;
     FineStrategy *fineStrategy;
+    PaymentFactory *paymentFactory;
 
 public:
-    LoanService(LoanRepository *repo, FineStrategy *fs) : lr(repo), fineStrategy(fs) {}
+    LoanService(LoanRepository *repo, FineStrategy *fs, PaymentFactory *pf) : lr(repo), fineStrategy(fs), paymentFactory(pf) {}
 
     bool borrow(User *u, BookItem *item)
     {
@@ -39,6 +41,24 @@ public:
         int daysLate = 6; // simulated
         int fine = fineStrategy->calculateFine(daysLate);
         record->setFine(fine);
+
+        string gatewayType = "stripe";
+        // cout << "Choose payment gateway (stripe/razorpay): ";
+        // cin >> gatewayType;
+
+        auto gateway = paymentFactory->createPaymentGateway(gatewayType);
+        if (!gateway)
+        {
+            cout << "Invalid payment gateway selected!" << endl;
+            return fine;
+        }
+
+        bool paid = gateway->processPayment(record->getUserId(), fine);
+
+        if (!paid)
+            cout << "Payment FAILED\n";
+        else
+            cout << "Payment SUCCESS\n";
 
         item->setStatus(BookStatus::AVAILABLE);
         item->notifyNextUser();
