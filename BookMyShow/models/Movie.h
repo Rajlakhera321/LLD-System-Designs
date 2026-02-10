@@ -14,7 +14,7 @@ private:
     string releaseDate;
     string duration;
 
-private:
+public:
     Movie(string title, string desc, string lang, string rd, string dur)
     {
         this->title = title;

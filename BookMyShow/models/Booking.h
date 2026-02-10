@@ -22,8 +22,24 @@ private:
 
 public:
     Booking(User *user, Show *show, vector<ShowSeat *> seats, Movie *movie, int amount, string createdAt)
+        : user(user), show(show), seats(seats), movie(movie), amount(amount), createdAt(createdAt)
     {
         status = BookingStatus::CONFIRMED;
         bookingId = IdGenerator::generateBookingId();
+    }
+
+    int getId() const
+    {
+        return bookingId;
+    }
+
+    Movie *getMovie() const
+    {
+        return movie;
+    }
+
+    Show *getShow() const
+    {
+        return show;
     }
 };
