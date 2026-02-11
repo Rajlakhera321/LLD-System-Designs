@@ -8,6 +8,7 @@ using namespace std;
 
 class ReclinerSeatStrategy : public ISeatInterface
 {
+public:
     Seat *createSeat(string row) override
     {
         return new Seat(row, SeatType::RECLINER);

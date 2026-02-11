@@ -27,4 +27,14 @@ public:
     Movie *getMovie() const { return movie; }
 
     string getStartTime() const { return startTime; }
+
+    void addShowSeat(ShowSeat *show)
+    {
+        showSeat.push_back(show);
+    }
+
+    vector<ShowSeat *> getShowSeats() const
+    {
+        return showSeat;
+    }
 };

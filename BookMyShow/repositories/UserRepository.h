@@ -38,4 +38,9 @@ public:
                 return u;
         return nullptr;
     }
+
+    vector<User *> findAll() const
+    {
+        return users;
+    }
 };

@@ -19,4 +19,19 @@ public:
     {
         showSeatId = IdGenerator::generateShowSeatId();
     }
+
+    SeatStatus getStatus() const
+    {
+        return status;
+    }
+
+    void setStatus(auto status)
+    {
+        this.status = status;
+    }
+
+    int getPrice() const
+    {
+        return price;
+    }
 };

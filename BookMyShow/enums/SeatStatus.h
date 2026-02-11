@@ -3,5 +3,6 @@
 enum class SeatStatus
 {
     AVAILABLE,
-    BOOKED
+    BOOKED,
+    BLOCKED
 };

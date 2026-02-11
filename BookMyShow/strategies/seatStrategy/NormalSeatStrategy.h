@@ -8,6 +8,7 @@ using namespace std;
 
 class NormalSeatStrategy : public ISeatInterface
 {
+public:
     Seat *createSeat(string row) override
     {
         return new Seat(row, SeatType::NORMAL);

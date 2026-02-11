@@ -1,0 +1,16 @@
+#pragma once
+#include <bits/stdc++.h>
+#include "../../interfaces/IPaymentInterface.h"
+#include "../../models/User.h"
+
+using namespace std;
+
+class RazorpayStrategy : public IPaymentInterface
+{
+public:
+    bool processPayment(User *user, int amount) override
+    {
+        cout << "Payment of amount " << amount << " done for user " << user->getName() << " using razorpay.";
+        return true;
+    }
+};

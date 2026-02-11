@@ -12,7 +12,7 @@ class SeatFactory
 public:
     ISeatInterface *createSeatFactory(string &type)
     {
-        if (type == "preimum")
+        if (type == "premium")
         {
             return new PremiumSeatStrategy();
         }
