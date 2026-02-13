@@ -15,8 +15,9 @@ private:
     int price;
 
 public:
-    ShowSeat(Seat *seat, SeatStatus status, int price) : seat(seat), status(status), price(price)
+    ShowSeat(Seat *seat, int price) : seat(seat), price(price)
     {
+        status = SeatStatus::AVAILABLE;
         showSeatId = IdGenerator::generateShowSeatId();
     }
 
@@ -27,7 +28,7 @@ public:
 
     void setStatus(auto status)
     {
-        this.status = status;
+        this->status = status;
     }
 
     int getPrice() const

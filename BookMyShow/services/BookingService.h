@@ -50,6 +50,8 @@ public:
         Booking *b = new Booking(user, show, seats, show->getMovie(), totalAmount, "today");
         bookingRepo->addBooking(b);
 
+        cout << "Booking Done! Thank you for booking the show" << endl;
+
         return b;
     }
 };

@@ -1,8 +1,8 @@
 #pragma once
 #include <bits/stdc++.h>
-#include "../interfaces/ISeatInterface.h"
-#include "../models/Seat.h"
-#include "../enums/SeatType.h"
+#include "../../interfaces/ISeatInterface.h"
+#include "../../models/Seat.h"
+#include "../../enums/SeatType.h"
 
 using namespace std;
 

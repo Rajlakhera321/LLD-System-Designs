@@ -18,9 +18,9 @@ public:
     ShowService(ShowRepository *sRepo, SeatRepository *seatRepo)
         : showRepo(sRepo), seatRepo(seatRepo) {}
 
-    Show *createShow(Movie *movie, string start, string end)
+    Show *createShow(Movie *movie, Theatre *theatre, string start, string end, string showDate)
     {
-        Show *show = new Show(movie, start, end);
+        Show *show = new Show(movie, theatre, start, end, showDate);
         showRepo->addShow(show);
         return show;
     }
@@ -30,7 +30,7 @@ public:
     {
         for (Seat *s : theatreSeats)
         {
-            ShowSeat *ss = new ShowSeat(s, SeatStatus::AVAILABLE, basePrice);
+            ShowSeat *ss = new ShowSeat(s, basePrice);
             show->addShowSeat(ss);
         }
     }

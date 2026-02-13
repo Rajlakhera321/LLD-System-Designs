@@ -1,6 +1,7 @@
 #pragma once
 #include <bits/stdc++.h>
 #include "IdGenerator.h"
+#include "Seat.h"
 
 using namespace std;
 
@@ -10,6 +11,7 @@ private:
     int theatreId;
     string name;
     string address;
+    vector<Seat *> seats;
 
 public:
     Theatre(string name, string address) : name(name), address(address)
@@ -21,4 +23,14 @@ public:
 
     string getThreatreAddress() const { return address; }
     int getThreatreId() const { return theatreId; }
+
+    void addSeats(Seat *s)
+    {
+        seats.push_back(s);
+    }
+
+    vector<Seat *> getSeats() const
+    {
+        return seats;
+    }
 };

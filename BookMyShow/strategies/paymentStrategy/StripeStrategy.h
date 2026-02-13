@@ -10,7 +10,7 @@ class StripeStrategy : public IPaymentInterface
 public:
     bool processPayment(User *user, int amount) override
     {
-        cout << "Payment of amount " << amount << " done for user " << user->getName() << " using stripe.";
+        cout << "Payment of amount " << amount << " done for user " << user->getName() << " using stripe." << endl;
         return true;
     }
 };

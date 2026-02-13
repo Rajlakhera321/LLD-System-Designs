@@ -10,7 +10,7 @@ using namespace std;
 class SeatFactory
 {
 public:
-    ISeatInterface *createSeatFactory(string &type)
+    ISeatInterface *createSeatFactory(string type)
     {
         if (type == "premium")
         {
