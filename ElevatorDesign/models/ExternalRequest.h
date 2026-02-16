@@ -6,10 +6,14 @@ using namespace std;
 
 class ExternalRequest
 {
-public:
+private:
     int floor;
     Direction directionType;
 
-private:
+public:
     ExternalRequest(int floor, Direction dir) : floor(floor), directionType(dir) {}
+
+    int getFloor() const { return floor; }
+
+    Direction getDirection() const { return directionType; }
 };

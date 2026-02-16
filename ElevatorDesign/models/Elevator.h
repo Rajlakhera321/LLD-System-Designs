@@ -1,17 +1,36 @@
 #pragma once
 #include <bits/stdc++.h>
 #include "../enums/Direction.enum.h"
+#include "Door.h"
+#include "IdGenerator.h"
+#include "Floor.h"
 
 using namespace std;
 
 class Elevator
 {
-public:
-    int id;
-    int currentFloor;
-    Direction dir;
-    bool doorOpen;
-
 private:
-    Elevator(int floor, Direction dir) {}
+    int id;
+    Floor *floor;
+    Direction dir;
+    Door *door;
+
+    priority_queue<int, vector<int>, greater<>> upQueue;
+    priority_queue<int> downQueue;
+
+public:
+    Elevator() : floor(0), dir(Direction::IDLE)
+    {
+        id = IdGenerator::generateElevatorId();
+    }
+
+    Floor *getFloor() const
+    {
+        return floor;
+    }
+
+    Direction getDirectionType() const
+    {
+        dir;
+    }
 };
