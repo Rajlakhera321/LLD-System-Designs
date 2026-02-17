@@ -16,7 +16,7 @@ public:
             elevators.push_back(new Elevator());
     }
 
-    vector<Elevator *> getAllElevator()
+    vector<Elevator *> getAllElevator() const
     {
         return elevators;
     }

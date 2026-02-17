@@ -4,9 +4,9 @@
 
 using namespace std;
 
-class NearestScheduler : public IScheduler
+class FcfsScheduler : public IScheduler
 {
-    Elevator *assign(const ExternalRequest &req, std::vector<Elevator *> &elevators) override
+    Elevator *assign(const ExternalRequest &req, vector<Elevator *> &elevators) override
     {
         return elevators[req.getFloor() % elevators.size()];
     }

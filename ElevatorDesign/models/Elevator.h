@@ -33,4 +33,10 @@ public:
     {
         dir;
     }
+
+    auto getUpQueue() const { return upQueue; }
+
+    auto getDownQueue() const { return downQueue; }
+
+    int getId() const { return id; }
 };
