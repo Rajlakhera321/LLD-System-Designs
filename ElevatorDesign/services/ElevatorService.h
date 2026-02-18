@@ -17,14 +17,21 @@ public:
 
     void handleExternal(const ExternalRequest &req)
     {
-        Elevator *e = scheduler->assign(req, repo->getAllElevator());
-        e->getUpQueue().push(req.getFloor());
-        if (e->getDirectionType() == Direction::IDLE)
-            e->getDirectionType() = (req.getFloor() > e->getFloor()->floorNo)
-                                        ? Direction::UP
-                                        : Direction::DOWN;
-    }
+        Elevator *e = scheduler->assign(req, repo.getAllElevator());
 
+        if (req.getFloor() > e->getFloor()->floorNo)
+            e->getUpQueue().push(req.getFloor());
+        else
+            e->getDownQueue().push(req.getFloor());
+
+        if (e->getDirectionType() == Direction::IDLE)
+        {
+            Direction d = (req.getFloor() > e->getFloor()->floorNo)
+                              ? Direction::UP
+                              : Direction::DOWN;
+            e->setDirectionType(d);
+        }
+    }
     void step()
     {
         for (auto *e : repo.getAllElevator())
@@ -36,21 +43,29 @@ public:
 private:
     void moveElevator(Elevator *e)
     {
-        if (e->getDirectionType() == Direction::UP && !e->getUpQueue().empty())
+        if (e->getDirectionType() == Direction::UP &&
+            !e->getUpQueue().empty())
         {
             int nxt = e->getUpQueue().top();
             e->getUpQueue().pop();
-            std::cout << "Elevator " << e->getId()
-                      << " moving to " << nxt << "\n";
             e->getFloor()->floorNo = nxt;
+
+            std::cout << "Elevator " << e->getId()
+                      << " moved to floor " << nxt << "\n";
         }
-        else if (e->getDirectionType() == Direction::DOWN && !e->getDownQueue().empty())
+        else if (e->getDirectionType() == Direction::DOWN &&
+                 !e->getDownQueue().empty())
         {
             int nxt = e->getDownQueue().top();
             e->getDownQueue().pop();
-            std::cout << "Elevator " << e->getId()
-                      << " moving to " << nxt << "\n";
             e->getFloor()->floorNo = nxt;
+
+            std::cout << "Elevator " << e->getId()
+                      << " moved to floor " << nxt << "\n";
+        }
+        else
+        {
+            e->setDirectionType(Direction::IDLE);
         }
     }
 };

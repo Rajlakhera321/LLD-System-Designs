@@ -16,12 +16,12 @@ public:
             elevators.push_back(new Elevator());
     }
 
-    vector<Elevator *> getAllElevator() const
+    vector<Elevator *> &getAllElevator()
     {
         return elevators;
     }
 
-    Elevator *getById(int id)
+    Elevator *getById(int id) const
     {
         return elevators[id];
     }

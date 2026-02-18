@@ -6,6 +6,7 @@ using namespace std;
 
 class NearestScheduler : public IScheduler
 {
+public:
     Elevator *assign(const ExternalRequest &req, std::vector<Elevator *> &elevators) override
     {
         int bestDist = INT_MAX;
@@ -13,7 +14,7 @@ class NearestScheduler : public IScheduler
 
         for (auto &e : elevators)
         {
-            int d = abs(req.getFloor() - e->getFloor()->floorNo);
+            int d = abs(req.getFloor() - e->getFloor()->getFloor());
             if (d < bestDist)
             {
                 bestDist = d;

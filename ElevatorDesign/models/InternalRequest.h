@@ -6,9 +6,14 @@ using namespace std;
 
 class InternalRequest
 {
+private:
 public:
     int destinationFloor;
 
-private:
     InternalRequest(int floor) : destinationFloor(floor) {}
+
+    int getInternalFloor() const
+    {
+        return destinationFloor;
+    }
 };

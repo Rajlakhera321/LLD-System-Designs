@@ -6,6 +6,7 @@ using namespace std;
 
 class LookScheduler : public IScheduler
 {
+public:
     Elevator *assign(const ExternalRequest &req, std::vector<Elevator *> &elevators) override
     {
         Elevator *best = nullptr;
@@ -13,7 +14,7 @@ class LookScheduler : public IScheduler
 
         for (auto &e : elevators)
         {
-            int score = abs(req.getFloor() - e->getFloor()->floorNo);
+            int score = abs(req.getFloor() - e->getFloor()->getFloor());
 
             if (e->getDirectionType() == req.getDirection())
                 score -= 7;

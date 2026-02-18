@@ -31,12 +31,19 @@ public:
 
     Direction getDirectionType() const
     {
-        dir;
+        return dir;
     }
 
-    auto getUpQueue() const { return upQueue; }
+    Door *getDoor() const { return door; }
 
-    auto getDownQueue() const { return downQueue; }
+    void setDirectionType(Direction dir)
+    {
+        this->dir = dir;
+    }
+
+    auto &getUpQueue() const { return upQueue; }
+
+    auto &getDownQueue() const { return downQueue; }
 
     int getId() const { return id; }
 };

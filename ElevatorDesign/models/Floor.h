@@ -8,7 +8,10 @@ class Floor
 {
 public:
     int floorNo;
-
-private:
     Floor(int floor) : floorNo(floor) {}
+
+    int getFloor() const
+    {
+        return floorNo;
+    }
 };
