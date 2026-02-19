@@ -1,9 +1,8 @@
 #pragma once
 #include <bits/stdc++.h>
 #include "../repositories/ElevatorRepository.h"
-#include "../interfaces/Scheduler.h"
-#include "../enums/Scheduler.enum.h"
 #include "../factories/SchedulerFactory.h"
+#include "../enums/Scheduler.enum.h"
 
 class ElevatorService
 {
@@ -19,25 +18,24 @@ public:
     {
         Elevator *e = scheduler->assign(req, repo.getAllElevator());
 
-        if (req.getFloor() > e->getFloor()->floorNo)
+        if (req.getFloor() > e->getFloor()->getFloor())
             e->getUpQueue().push(req.getFloor());
         else
             e->getDownQueue().push(req.getFloor());
 
         if (e->getDirectionType() == Direction::IDLE)
         {
-            Direction d = (req.getFloor() > e->getFloor()->floorNo)
+            Direction d = (req.getFloor() > e->getFloor()->getFloor())
                               ? Direction::UP
                               : Direction::DOWN;
             e->setDirectionType(d);
         }
     }
+
     void step()
     {
         for (auto *e : repo.getAllElevator())
-        {
             moveElevator(e);
-        }
     }
 
 private:

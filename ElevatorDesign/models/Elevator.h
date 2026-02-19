@@ -19,31 +19,22 @@ private:
     priority_queue<int> downQueue;
 
 public:
-    Elevator() : floor(0), dir(Direction::IDLE)
+    Elevator(int startFloor = 0)
+        : id(IdGenerator::generateElevatorId()),
+          floor(new Floor(startFloor)),
+          dir(Direction::IDLE),
+          door(new Door())
     {
-        id = IdGenerator::generateElevatorId();
     }
 
-    Floor *getFloor() const
-    {
-        return floor;
-    }
-
-    Direction getDirectionType() const
-    {
-        return dir;
-    }
-
+    Floor *getFloor() const { return floor; }
+    Direction getDirectionType() const { return dir; }
     Door *getDoor() const { return door; }
 
-    void setDirectionType(Direction dir)
-    {
-        this->dir = dir;
-    }
+    void setDirectionType(Direction d) { dir = d; }
 
-    auto &getUpQueue() const { return upQueue; }
-
-    auto &getDownQueue() const { return downQueue; }
+    auto &getUpQueue() { return upQueue; }
+    auto &getDownQueue() { return downQueue; }
 
     int getId() const { return id; }
 };
