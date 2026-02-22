@@ -7,17 +7,17 @@ using namespace std;
 class User
 {
 private:
-    int id;
+    int userId;
     string name;
     string phoneNo;
 
 public:
     User(string name, string phoneNo) : name(name), phoneNo(phoneNo)
     {
-        id = IdGenerator::generateUserId();
+        userId = IdGenerator::generateUserId();
     }
 
-    int id() const { return id; }
+    int getId() const { return userId; }
 
     string getName() const { return name; }
 
