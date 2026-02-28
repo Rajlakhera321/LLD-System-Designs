@@ -1,6 +1,6 @@
 #pragma once
 #include <bits/stdc++.h>
-#include "models/Location.h"
+#include "../models/Location.h"
 
 using namespace std;
 

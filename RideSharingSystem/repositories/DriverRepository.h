@@ -1,6 +1,6 @@
 #pragma once
 #include <bits/stdc++.h>
-#include "models/Driver.h"
+#include "../models/Driver.h"
 
 using namespace std;
 
@@ -25,5 +25,19 @@ public:
             }
         }
         return nullptr;
+    }
+
+    vector<Driver *> getAvailableDrivers()
+    {
+        std::vector<Driver *> list;
+        for (auto &p : drivers)
+            if (p->getStatus() == DriverStatus::AVAILABLE)
+                list.push_back(p);
+        return list;
+    }
+
+    void setLocationForDriver(Driver *driver, double lat, double lng)
+    {
+        driver->setLocation(lat, lng);
     }
 };

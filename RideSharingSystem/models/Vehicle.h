@@ -1,6 +1,6 @@
 #pragma once
 #include <bits/stdc++.h>
-#include "Driver.h"
+#include "User.h"
 
 using namespace std;
 
@@ -10,13 +10,14 @@ private:
     string vehicleNumber;
     string model;
     string color;
-    Driver *driver;
+    User *driver;
 
 public:
-    Vehicle(Driver *driver, string vehicleNo, string model, string color) : driver(driver), model(model), color(color), vehicleNumber(vehicleNo) {}
+    Vehicle(User *driver, string &vehicleNo, string &model, string &color) : driver(driver), model(model), color(color), vehicleNumber(vehicleNo) {}
 
     string getVehicleNumber() const { return vehicleNumber; }
     string getModel() const { return model; }
+    string getColor() const { return color; }
 
-    Driver *getDriver() const { return driver; }
+    User *getDriver() const { return driver; }
 };

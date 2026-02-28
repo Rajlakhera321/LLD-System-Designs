@@ -1,7 +1,7 @@
 #pragma once
 #include <bits/stdc++.h>
-#include "repositories/VehicleRepository.h"
-#include "repositories/DriverRepository.h"
+#include "../repositories/VehicleRepository.h"
+#include "../repositories/DriverRepository.h"
 
 using namespace std;
 
@@ -18,6 +18,7 @@ public:
     {
         Vehicle *vehicle = new Vehicle(driver, plateNo, color, model);
         vehicleRepo->addVehicle(vehicle);
+        cout << "Vehicle added: " << vehicle->getModel() << " with Plate No: " << vehicle->getVehicleNumber() << endl;
     }
 
     Vehicle *getVehicleByNumber(const string &vehicleNumber)

@@ -1,7 +1,7 @@
 #pragma once
 #include <bits/stdc++.h>
-#include "models/User.h"
-#include "repositories/UserRepository.h"
+#include "../models/User.h"
+#include "../repositories/UserRepository.h"
 
 using namespace std;
 
@@ -17,6 +17,7 @@ public:
     {
         User *user = new User(name, phoneNo);
         userRepo->addUser(user);
+        cout << "User registered: " << user->getName() << " with ID: " << user->getId() << endl;
     }
 
     User *getUserById(int id)

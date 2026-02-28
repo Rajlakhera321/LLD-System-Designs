@@ -1,6 +1,6 @@
 #pragma once
 #include <bits/stdc++.h>
-#include "models/Rider.h"
+#include "../models/Rider.h"
 
 using namespace std;
 
@@ -12,6 +12,7 @@ private:
 public:
     void addRider(Rider *rider)
     {
+        cout << "Adding rider: " << rider->getName() << " with ID: " << rider->getId() << endl;
         riders.push_back(rider);
     }
 

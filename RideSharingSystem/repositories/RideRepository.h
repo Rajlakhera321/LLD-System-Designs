@@ -1,6 +1,6 @@
 #pragma once
 #include <bits/stdc++.h>
-#include "models/Ride.h"
+#include "../models/Ride.h"
 
 using namespace std;
 

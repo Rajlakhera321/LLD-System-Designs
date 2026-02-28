@@ -3,7 +3,7 @@
 #include "Driver.h"
 #include "Rider.h"
 #include "Vehicle.h"
-#include "enums/RideStatus.h"
+#include "../enums/RideStatus.h"
 #include "Location.h"
 #include "IdGenerator.h"
 
@@ -32,6 +32,12 @@ public:
     RideStatus getStatus() const { return status; }
     double getFare() const { return fare; }
 
+    void assignDriver(Driver *driver) { this->driver = driver; }
+
     void setStatus(RideStatus s) { status = s; }
     void setFare(double f) { fare = f; }
+
+    void start() { status = RideStatus::ONGOING; }
+    void finish() { status = RideStatus::COMPLETED; }
+    void cancel() { status = RideStatus::CANCELLED; }
 };
