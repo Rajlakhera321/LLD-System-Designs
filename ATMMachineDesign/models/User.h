@@ -1,11 +1,13 @@
 #pragma once
 #include <bits/stdc++.h>
+#include "IdGenerator.h"
 
 using namespace std;
 
 class User
 {
 private:
+    int userId;
     string name;
     string email;
     string password;
@@ -13,6 +15,7 @@ private:
 public:
     User(string name, string email, string password)
     {
+        this->userId = IdGenerator::generateUserId();
         this->name = name;
         this->email = email;
         this->password = password;
@@ -31,5 +34,10 @@ public:
     string getPassword() const
     {
         return password;
+    }
+
+    int getUserId() const
+    {
+        return userId;
     }
 };
