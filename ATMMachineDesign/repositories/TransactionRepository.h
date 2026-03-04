@@ -13,6 +13,7 @@ public:
     void addTransaction(Transactions *transaction)
     {
         transactions.push_back(transaction);
+        transaction->getToAccount()->getUser()->update(transaction->getAmount()); // Notify the user of the toAccount about the debit transaction
     }
 
     vector<Transactions *> getAllTransactions()
