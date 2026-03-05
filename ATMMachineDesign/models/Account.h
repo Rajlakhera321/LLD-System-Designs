@@ -12,7 +12,7 @@ private:
     User *user;
 
 public:
-    Account(string accountNumber, double balance, User *user)
+    Account(const string &accountNumber, double balance, User *user)
     {
         this->accountNumber = accountNumber;
         this->balance = balance;

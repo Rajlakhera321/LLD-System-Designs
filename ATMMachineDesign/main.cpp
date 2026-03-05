@@ -1,51 +1,31 @@
-#include <bits/stdc++.h>
-#include "services/UserService.h"
-#include "services/AccountService.h"
-#include "services/TransactionService.h"
+#include <iostream>
+
+#include "services/ATMService.h"
+#include "states/IdleState.h"
+#include "models/Card.h"
+#include "models/Account.h"
 
 int main()
 {
-    // Create services
-    UserService *userService;
-    AccountService *accountService;
-    TransactionService *transactionService;
+    Account *account = new Account("101010", 1000, nullptr);
 
-    UserRepository *userRepository = new UserRepository();
-    AccountRepository *accountRepository = new AccountRepository();
-    TransactionRepository *transactionRepository = new TransactionRepository();
+    Card *card = new Card(1234, account);
 
-    userService = new UserService();
-    accountService = AccountService::getInstance();
-    transactionService = TransactionService::getInstance();
+    ATM *atm = new ATM(new IdleState(), 5000);
 
-    // Create users
-    User *user1 = new User("Alice", "alice@gmail.com", "password123");
-    User *user2 = new User("Bob", "bob@gmail.com", "password456");
+    atm->setCard(card);
 
-    // Register users
-    userService->registerUser(user1);
-    userService->registerUser(user2);
+    atm->insertCard();
 
-    // Create accounts
-    Account *account1 = new Account("4111111111111111", 1000.0, user1);
-    Account *account2 = new Account("4222222222222222", 500.0, user2);
+    atm->enterPIN(1234);
 
-    // Add accounts to account service
-    accountService->createAccount(account1);
-    accountService->createAccount(account2);
+    atm->balance();
 
-    // Create transactions
-    Transactions *transaction1 = new Transactions(account2, account1, 200.0, TransactionEnum::CREDIT);
-    Transactions *transaction2 = new Transactions(account1, account2, 200.0, TransactionEnum::DEBIT);
+    atm->withdraw(200);
 
-    transactionService->createTransaction(transaction1);
-    transactionService->createTransaction(transaction2);
+    atm->balance();
 
-    vector<Transactions *> transactions = transactionService->getAllTransactions();
-    for (Transactions *t : transactions)
-    {
-        cout << "Transaction: " << t->getAmount() << " from account " << t->getFromAccount()->getAccountNumber() << " to account " << t->getToAccount()->getAccountNumber() << endl;
-    }
+    atm->eject();
 
     return 0;
 }
