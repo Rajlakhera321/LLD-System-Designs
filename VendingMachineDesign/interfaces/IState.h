@@ -1,8 +1,9 @@
 #pragma once
 #include <bits/stdc++.h>
-#include "../models/VendingMachine.h"
 
 using namespace std;
+
+class VendingMachine;
 
 class IState
 {
