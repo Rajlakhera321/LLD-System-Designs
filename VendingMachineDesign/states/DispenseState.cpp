@@ -36,8 +36,6 @@ void DispenseState::dispense(VendingMachine *machine)
     machine->resetBalance();
 
     item->setAvailability(false);
-
-    machine->setState(IdleState::getInstance());
 }
 
 void DispenseState::cancel(VendingMachine *machine)

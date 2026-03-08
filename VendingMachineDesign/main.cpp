@@ -18,5 +18,6 @@ int main()
 
     machine.insertCoin(20);
     machine.selectProduct(2);
+    machine.setState(IdleState::getInstance());
     return 0;
 }
