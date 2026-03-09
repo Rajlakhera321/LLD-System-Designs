@@ -17,7 +17,7 @@ int main()
     machine.getInventory()->addItem(new Item(3, new Product("Chips", 15)));
 
     machine.insertCoin(20);
-    machine.selectProduct(2);
-    machine.setState(IdleState::getInstance());
+    machine.selectProduct(1);
+
     return 0;
 }
