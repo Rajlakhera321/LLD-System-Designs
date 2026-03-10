@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 #include "../interfaces/IState.h"
 #include "Inventory.h"
+#include "../interfaces/IPaymentInterface.h"
 
 using namespace std;
 
@@ -12,6 +13,7 @@ private:
     Inventory *inventory;
     int balance;
     int selectedCode;
+    IPaymentInterface *payment;
 
 public:
     VendingMachine(IState *state)
@@ -80,5 +82,15 @@ public:
     void resetBalance()
     {
         balance = 0;
+    }
+
+    void setPaymentInterface(IPaymentInterface *paymentInterface)
+    {
+        payment = paymentInterface;
+    }
+
+    IPaymentInterface *getPaymentInterface()
+    {
+        return payment;
     }
 };

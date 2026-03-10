@@ -18,6 +18,7 @@ IdleState *IdleState::getInstance()
 void IdleState::insertCoin(VendingMachine *machine, int money)
 {
     machine->addBalance(money);
+    machine->getPaymentInterface()->pay(money);
     machine->setState(ReadyState::getInstance());
 }
 

@@ -5,6 +5,8 @@
 #include "models/VendingMachine.h"
 #include "models/Product.h"
 #include "models/Item.h"
+#include "strategies/CoinStrategy.h"
+#include "enums/Coin.h"
 
 using namespace std;
 
@@ -16,7 +18,9 @@ int main()
     machine.getInventory()->addItem(new Item(2, new Product("Pepsi", 12)));
     machine.getInventory()->addItem(new Item(3, new Product("Chips", 15)));
 
-    machine.insertCoin(20);
+    machine.setPaymentInterface(new CoinStrategy());
+
+    machine.insertCoin(static_cast<int>(Coin::TWENTY));
     machine.selectProduct(1);
 
     return 0;
