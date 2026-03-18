@@ -22,8 +22,8 @@ public:
         return beverageRepo->hasBeverage(name);
     }
 
-    void addBeverage(BeverageEnum name, Beverage bev)
+    void addBeverage(Beverage *bev)
     {
-        beverageRepo->addBeverage(name, bev);
+        beverageRepo->addBeverage(bev);
     }
 };

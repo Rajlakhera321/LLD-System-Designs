@@ -10,7 +10,22 @@ private:
     InventoryRepository repository;
 
 public:
-    InventoryService();
-    bool isItemAvailable(const string &item);
-    void updateInventory(const string &item, int quantity);
+    bool isItemAvailable(const IngredientEnum &item)
+    {
+        return repository.hasInventory(item);
+    };
+    void updateInventory(const IngredientEnum &item, int quantity)
+    {
+        repository.updateInventory(item, quantity);
+    };
+
+    Inventory *getInventory(const IngredientEnum &item)
+    {
+        return repository.getInventory(item);
+    }
+
+    void addInventory(const IngredientEnum &item, Inventory inv)
+    {
+        repository.addInventory(item, inv);
+    }
 };
