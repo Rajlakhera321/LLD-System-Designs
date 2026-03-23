@@ -1,7 +1,5 @@
 #pragma once
-#include "bits/stdc++.h"
-#include "../enums/BeverageEnum.h"
-#include "../enums/IngredientEnum.h"
+#include <bits/stdc++.h>
 #include "../services/BeverageService.h"
 #include "../services/InventoryService.h"
 
@@ -10,35 +8,36 @@ using namespace std;
 class CoffeeMachineController
 {
 private:
-    BeverageService &beverageService;
-    InventoryService &inventoryService;
+    BeverageService beverageService;
+    InventoryService inventoryService;
 
 public:
-    CoffeeMachineController(BeverageService &bevService, InventoryService &invService) : beverageService(bevService), inventoryService(invService) {}
-
-    void makeBeverage(BeverageEnum beverageName)
+    void makeBeverage(BeverageEnum type)
     {
-        if (!beverageService.hasBeverage(beverageName))
+
+        auto beverage = beverageService.createBeverage(type);
+
+        if (!beverage)
         {
-            cout << "Beverage not available!" << endl;
+            cout << "Invalid beverage\n";
             return;
         }
 
-        Beverage *bev = beverageService.getBeverage(beverageName);
-        for (const auto &ingredient : bev->getIngredients())
+        auto recipe = beverage->getRecipe();
+
+        if (!inventoryService.hasIngredients(recipe))
         {
-            if (!inventoryService.isItemAvailable(ingredient))
-            {
-                cout << "Ingredient " << static_cast<int>(ingredient) << " is not available!" << endl;
-                return;
-            }
+            cout << "Insufficient ingredients\n";
+            return;
         }
 
-        for (const auto &ingredient : bev->getIngredients())
-        {
-            inventoryService.updateInventory(ingredient, -1);
-        }
+        inventoryService.consume(recipe);
 
-        cout << "Your " << static_cast<int>(beverageName) << " is ready!" << endl;
+        cout << beverage->getName() << " is ready!\n";
+    }
+
+    void refill(IngredientEnum ing, int qty)
+    {
+        inventoryService.refill(ing, qty);
     }
 };

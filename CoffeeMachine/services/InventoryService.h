@@ -1,31 +1,22 @@
 #pragma once
 #include <bits/stdc++.h>
-#include "../repositories/InventoryRepository.h"
-
-using namespace std;
+#include "../models/Inventory.h"
 
 class InventoryService
 {
-private:
-    InventoryRepository repository;
-
 public:
-    bool isItemAvailable(const IngredientEnum &item)
+    void refill(IngredientEnum ing, int qty)
     {
-        return repository.hasInventory(item);
-    };
-    void updateInventory(const IngredientEnum &item, int quantity)
-    {
-        repository.updateInventory(item, quantity);
-    };
-
-    Inventory *getInventory(const IngredientEnum &item)
-    {
-        return repository.getInventory(item);
+        Inventory::getInstance().addIngredient(ing, qty);
     }
 
-    void addInventory(const IngredientEnum &item, Inventory inv)
+    bool hasIngredients(const unordered_map<IngredientEnum, int> &recipe)
     {
-        repository.addInventory(item, inv);
+        return Inventory::getInstance().hasIngredients(recipe);
+    }
+
+    void consume(const unordered_map<IngredientEnum, int> &recipe)
+    {
+        Inventory::getInstance().consumeIngredients(recipe);
     }
 };

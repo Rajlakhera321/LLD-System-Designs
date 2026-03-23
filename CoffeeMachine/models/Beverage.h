@@ -1,36 +1,26 @@
 #pragma once
+#include <memory>
 #include <bits/stdc++.h>
-#include "../enums/BeverageEnum.h"
-#include "../enums/IngredientEnum.h"
+#include "../interfaces/IPreparation.h"
 
 using namespace std;
 
 class Beverage
 {
 private:
-    BeverageEnum name;
-    unordered_set<IngredientEnum> ingredients;
+    unique_ptr<IPreparation> strategy;
 
 public:
-    Beverage(BeverageEnum name, unordered_set<IngredientEnum> ingredients) : name(name), ingredients(ingredients) {}
+    Beverage(unique_ptr<IPreparation> strategy)
+        : strategy(move(strategy)) {}
 
-    BeverageEnum getName() const
+    unordered_map<IngredientEnum, int> getRecipe()
     {
-        return name;
+        return strategy->getRecipe();
     }
 
-    unordered_set<IngredientEnum> getIngredients() const
+    string getName()
     {
-        return ingredients;
-    }
-
-    void addIngredient(IngredientEnum ingredient)
-    {
-        ingredients.insert(ingredient);
-    }
-
-    void removeIngredient(IngredientEnum ingredient)
-    {
-        ingredients.erase(ingredient);
+        return strategy->getName();
     }
 };

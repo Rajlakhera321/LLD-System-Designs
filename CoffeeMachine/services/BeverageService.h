@@ -1,29 +1,11 @@
 #pragma once
-#include <bits/stdc++.h>
-#include "../repositories/BeverageRepository.h"
-
-using namespace std;
+#include "../factory/BeverageFactory.h"
 
 class BeverageService
 {
-private:
-    BeverageRepository *beverageRepo;
-
 public:
-    BeverageService(BeverageRepository *beverageRepo) : beverageRepo(beverageRepo) {}
-
-    Beverage *getBeverage(BeverageEnum name)
+    unique_ptr<Beverage> createBeverage(BeverageEnum type)
     {
-        return beverageRepo->getBeverage(name);
-    }
-
-    bool hasBeverage(BeverageEnum name)
-    {
-        return beverageRepo->hasBeverage(name);
-    }
-
-    void addBeverage(Beverage *bev)
-    {
-        beverageRepo->addBeverage(bev);
+        return BeverageFactory::createBeverage(type);
     }
 };

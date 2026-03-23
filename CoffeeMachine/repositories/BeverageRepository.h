@@ -1,6 +1,5 @@
 #pragma once
 #include <bits/stdc++.h>
-#include "../enums/BeverageEnum.h"
 #include "../models/Beverage.h"
 
 using namespace std;
@@ -8,42 +7,24 @@ using namespace std;
 class BeverageRepository
 {
 private:
-    vector<Beverage *> beverages;
+    unordered_map<BeverageEnum, Beverage> beverages;
 
 public:
-    void addBeverage(Beverage *bev)
+    void addBeverage(const Beverage &bev)
     {
-        beverages.push_back(bev);
+        beverages.insert({bev.getName(), bev});
     }
 
     Beverage *getBeverage(BeverageEnum name)
     {
-        for (auto bev : beverages)
-        {
-            if (bev->getName() == name)
-                return bev;
-        }
-        return nullptr;
+        auto it = beverages.find(name);
+        if (it == beverages.end())
+            return NULL;
+        return &it->second;
     }
 
     bool hasBeverage(BeverageEnum name)
     {
-        return getBeverage(name) != nullptr;
-    }
-
-    void addIngredientToBeverage(BeverageEnum beverage, IngredientEnum ingredient)
-    {
-        if (hasBeverage(beverage))
-        {
-            getBeverage(beverage)->addIngredient(ingredient);
-        }
-    }
-
-    void removeIngredientFromBeverage(BeverageEnum beverage, IngredientEnum ingredient)
-    {
-        if (hasBeverage(beverage))
-        {
-            getBeverage(beverage)->removeIngredient(ingredient);
-        }
+        return beverages.find(name) != beverages.end();
     }
 };

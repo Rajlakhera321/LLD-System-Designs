@@ -7,44 +7,40 @@ using namespace std;
 class Inventory
 {
 private:
-    unordered_map<IngredientEnum, int> ingredients;
+    unordered_map<IngredientEnum, int> stock;
+
+    Inventory() {}
 
 public:
-    int getIngredient(IngredientEnum ingredient)
+    static Inventory &getInstance()
     {
-        if (!hasIngredient(ingredient))
-            return 0;
-
-        return ingredients[ingredient];
+        static Inventory instance;
+        return instance;
     }
 
-    auto getAllIngredients() const
+    Inventory(const Inventory &) = delete;
+    void operator=(const Inventory &) = delete;
+
+    void addIngredient(IngredientEnum ing, int qty)
     {
-        return ingredients;
+        stock[ing] += qty;
     }
 
-    bool hasIngredient(IngredientEnum ingredient)
+    bool hasIngredients(const unordered_map<IngredientEnum, int> &recipe)
     {
-        return ingredients.find(ingredient) != ingredients.end();
-    }
-
-    void consumeIngredient(IngredientEnum ingredient, int quantity)
-    {
-        if (hasIngredient(ingredient) && ingredients[ingredient] >= quantity)
+        for (auto &it : recipe)
         {
-            ingredients[ingredient] -= quantity;
+            if (stock[it.first] < it.second)
+                return false;
         }
+        return true;
     }
 
-    void restockIngredient(IngredientEnum ingredient, int quantity)
+    void consumeIngredients(const unordered_map<IngredientEnum, int> &recipe)
     {
-        if (hasIngredient(ingredient))
+        for (auto &it : recipe)
         {
-            ingredients[ingredient] += quantity;
-        }
-        else
-        {
-            ingredients[ingredient] = quantity;
+            stock[it.first] -= it.second;
         }
     }
 };
