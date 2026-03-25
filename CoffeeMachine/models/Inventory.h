@@ -1,4 +1,6 @@
 #pragma once
+#include <iostream>
+#include <unordered_map>
 #include <bits/stdc++.h>
 #include "../enums/IngredientEnum.h"
 
