@@ -1,6 +1,6 @@
 #pragma once
 #include <bits/stdc++.h>
-#include "../enums/symbol.h"
+#include "../enums/Symbol.h"
 
 using namespace std;
 

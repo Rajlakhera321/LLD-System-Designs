@@ -7,9 +7,10 @@ class GameController
 {
 private:
     GameService *gameService;
+    Game &game;
 
 public:
-    GameController(GameService *service) : gameService(service) {}
+    GameController(GameService *service, Game &g) : gameService(service), game(g) {}
 
     void createGame(int boardSize)
     {
@@ -30,4 +31,21 @@ public:
     {
         gameService->addPlayerToGame(gameId, name, symbol);
     }
-}
+
+    void startGame()
+    {
+        while (game.getStatus() == GameStatus::InProgress)
+        {
+            printBoard(game.getId());
+            Players &currentPlayer = game.getCurrentPlayer();
+            cout << "It's " << currentPlayer.getName() << "'s turn (" << currentPlayer.getSymbol() << ").\n";
+            int row, col;
+            cout << "Enter your move (row and column): ";
+            cin >> row >> col;
+            if (!makeMoveForPlayer(game.getId(), row, col))
+            {
+                cout << "❌ Invalid move! Try again.\n";
+            }
+        }
+    }
+};

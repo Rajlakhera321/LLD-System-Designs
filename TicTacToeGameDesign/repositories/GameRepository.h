@@ -1,7 +1,8 @@
 #pragma once
 #include <bits/stdc++.h>
-#include "../enums/symbol.h"
+#include "../enums/Symbol.h"
 #include "../models/Players.h"
+#include "../models/Game.h"
 
 using namespace std;
 
@@ -31,7 +32,7 @@ public:
     void printBoard(int id) const
     {
         cout << "\n";
-        auto board = games[id].getBoard().getBoard();
+        auto &board = games[id].getBoard().getBoard();
         for (auto &row : board)
         {
             for (auto &cell : row)
@@ -55,7 +56,7 @@ public:
 
     bool isDraw()
     {
-        auto board = games[id].getBoard().getBoard();
+        auto &board = games[id].getBoard().getBoard();
         auto &grid = board.getGrid();
         for (auto &row : grid)
         {

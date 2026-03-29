@@ -1,7 +1,7 @@
 #pragma once
 #include <bits/stdc++.h>
-#include "../enums/gameStatus.h"
-#include "../enums/symbol.h"
+#include "../enums/GameStatus.h"
+#include "../enums/Symbol.h"
 #include "./Board.h"
 #include "./Move.h"
 #include "./Players.h"
@@ -22,9 +22,9 @@ public:
     Game(int boardSize)
         : board(boardSize), status(GameStatus::InProgress), currentPlayerIndex(0), id(IdGenerator::generateId()) {}
 
-    void addPlayer(string name, char symbol)
+    void addPlayer(string name, Symbol symbol)
     {
-        players.push_back(Player(name, symbol));
+        players.push_back(Players(name, symbol));
     }
 
     auto getBoard() const
