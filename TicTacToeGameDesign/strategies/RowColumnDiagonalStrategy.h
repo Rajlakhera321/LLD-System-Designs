@@ -43,14 +43,13 @@ public:
         if (row == col)
         {
             win = true;
-            for (int i = 0; i < board.getSize(); i++)
-            {
-                if (board[i][i] != symbol)
-                {
+            for (int i = 0; i < board.getSize(); i++){
+                if (board[i][i] != symbol){
                     win = false;
                     break;
                 }
             }
+
             if (win)
                 return true;
         }
@@ -59,14 +58,13 @@ public:
         if (row + col == board.getSize() - 1)
         {
             win = true;
-            for (int i = 0; i < board.getSize(); i++)
-            {
-                if (board[i][board.getSize() - 1 - i] != symbol)
-                {
+            for (int i = 0; i < board.getSize(); i++){
+                if (board[i][board.getSize() - 1 - i] != symbol){
                     win = false;
                     break;
                 }
             }
+
             if (win)
                 return true;
         }
