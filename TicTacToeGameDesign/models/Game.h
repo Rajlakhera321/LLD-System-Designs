@@ -19,15 +19,20 @@ private:
     int currentPlayerIndex;
 
 public:
-    Game(int boardSize)
-        : board(boardSize), status(GameStatus::InProgress), currentPlayerIndex(0), id(IdGenerator::generateId()) {}
+    Game(Board board)
+        : board(board), status(GameStatus::INPROGRESS), currentPlayerIndex(0), id(IdGenerator::generateId()) {}
 
     void addPlayer(string name, Symbol symbol)
     {
         players.push_back(Players(name, symbol));
     }
 
-    auto getBoard() const
+    Board &getBoard()
+    {
+        return board;
+    }
+
+    const Board &getBoard() const
     {
         return board;
     }

@@ -17,12 +17,14 @@ public:
         games.push_back(game);
     }
 
-    bool makeMove(int id, int row, int col, char player)
+    bool makeMove(int id, int row, int col, char symbol)
     {
-        auto &board = games[id].getBoard().getBoard();
+        auto &boardObj = games[id].getBoard();
+        auto &board = boardObj.getBoard();
+        int size = boardObj.getSize();
         if (row >= 0 && row < size && col >= 0 && col < size && board[row][col] == ' ')
         {
-            board[row][col] = player;
+            board[row][col] = symbol;
             return true;
         }
 
@@ -54,11 +56,11 @@ public:
         return games;
     }
 
-    bool isDraw()
+    bool isDraw(int id)
     {
         auto &board = games[id].getBoard().getBoard();
-        auto &grid = board.getGrid();
-        for (auto &row : grid)
+        // auto &grid = board.getGrid();
+        for (auto &row : board)
         {
             for (auto &cell : row)
             {

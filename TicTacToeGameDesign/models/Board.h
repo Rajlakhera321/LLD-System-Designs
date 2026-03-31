@@ -17,7 +17,13 @@ public:
         return size;
     }
 
-    vector<vector<char> > getBoard() const
+    vector<vector<char> > &getBoard()
+    {
+        return board;
+    }
+
+    // ✅ CONST version (for read-only)
+    const vector<vector<char> > &getBoard() const
     {
         return board;
     }

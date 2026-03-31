@@ -19,9 +19,9 @@ private:
 public:
     GameService(GameRepository *repo, IWinningStrategies *winningStrategy) : gameRepo(repo), strategy(winningStrategy) {}
 
-    void createGame(int boardSize)
+    void createGame(Board &board)
     {
-        Game newGame(boardSize);
+        Game newGame(board);
         gameRepo->addGame(newGame);
     }
 
@@ -30,11 +30,10 @@ public:
         auto &games = gameRepo->getGames();
         if (gameId >= 0 && gameId < games.size())
         {
-            auto &game = games[gameId];
+            Game &game = games[gameId];
             Players &currentPlayer = game.getCurrentPlayer();
             if (!gameRepo->makeMove(gameId, row, col, currentPlayer.getSymbol() == Symbol::X ? 'X' : 'O'))
             {
-                cout << "❌ Invalid move! Try again.\n";
                 return false;
             }
 
@@ -43,17 +42,20 @@ public:
             if (strategy->checkWinCondition(game.getBoard(), move))
             {
                 gameRepo->printBoard(gameId);
-                cout << "🏆 " << player.name << " wins!\n";
-                game.setStatus(GameStatus::WIN);
-                return;
+                cout << "🏆 " << currentPlayer.getName() << " wins!\n";
+                if (currentPlayer.getSymbol() == Symbol::X)
+                    game.setStatus(GameStatus::XWINS);
+                else
+                    game.setStatus(GameStatus::OWINS);
+                return true;
             }
 
-            if (gameRepo->isDraw())
+            if (gameRepo->isDraw(gameId))
             {
                 gameRepo->printBoard(gameId);
                 cout << "🤝 It's a draw!\n";
                 game.setStatus(GameStatus::DRAW);
-                return;
+                return false;
             }
 
             game.switchTurn();
@@ -71,4 +73,19 @@ public:
             gameRepo->addPlayerToGame(gameId, name, symbol);
         }
     }
-}
+
+    void printBoard(int gameId) const
+    {
+        gameRepo->printBoard(gameId);
+    }
+
+    GameStatus getGameStatus(int id)
+    {
+        return gameRepo->getGames()[id].getStatus();
+    }
+
+    string getCurrentPlayerName(int id)
+    {
+        return gameRepo->getGames()[id].getCurrentPlayer().getName();
+    }
+};

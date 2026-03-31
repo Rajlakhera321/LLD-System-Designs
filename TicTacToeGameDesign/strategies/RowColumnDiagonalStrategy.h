@@ -11,13 +11,17 @@ public:
     {
         int row = move.getRow();
         int col = move.getCol();
-        Symbol symbol = move.getSymbol();
+        char sym = move.getPlayer().getSymbol() == Symbol::X ? 'X' : 'O';
 
-        // Check the row
+        auto &grid = board.getBoard();
+        int n = board.getSize();
+
         bool win = true;
-        for (int c = 0; c < board.getSize(); c++)
+
+        // Row
+        for (int c = 0; c < n; c++)
         {
-            if (board[row][c] != symbol)
+            if (grid[row][c] != sym)
             {
                 win = false;
                 break;
@@ -26,11 +30,11 @@ public:
         if (win)
             return true;
 
-        // Check the column
+        // Column
         win = true;
-        for (int r = 0; r < board.getSize(); r++)
+        for (int r = 0; r < n; r++)
         {
-            if (board[r][col] != symbol)
+            if (grid[r][col] != sym)
             {
                 win = false;
                 break;
@@ -39,32 +43,34 @@ public:
         if (win)
             return true;
 
-        // Check the main diagonal
+        // Diagonal
         if (row == col)
         {
             win = true;
-            for (int i = 0; i < board.getSize(); i++){
-                if (board[i][i] != symbol){
+            for (int i = 0; i < n; i++)
+            {
+                if (grid[i][i] != sym)
+                {
                     win = false;
                     break;
                 }
             }
-
             if (win)
                 return true;
         }
 
-        // Check the anti-diagonal
-        if (row + col == board.getSize() - 1)
+        // Anti-diagonal
+        if (row + col == n - 1)
         {
             win = true;
-            for (int i = 0; i < board.getSize(); i++){
-                if (board[i][board.getSize() - 1 - i] != symbol){
+            for (int i = 0; i < n; i++)
+            {
+                if (grid[i][n - i - 1] != sym)
+                {
                     win = false;
                     break;
                 }
             }
-
             if (win)
                 return true;
         }

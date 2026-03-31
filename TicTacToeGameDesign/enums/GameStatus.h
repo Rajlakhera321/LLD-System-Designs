@@ -2,8 +2,8 @@
 
 enum class GameStatus
 {
-    InProgress,
-    Draw,
-    XWins,
-    OWins
+    INPROGRESS,
+    DRAW,
+    XWINS,
+    OWINS
 };
