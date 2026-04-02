@@ -1,5 +1,8 @@
 #pragma once
-#include "Jump.h"
+#include <bits/stdc++.h>
+#include "./Jump.h"
+
+using namespace std;
 
 class Cell
 {

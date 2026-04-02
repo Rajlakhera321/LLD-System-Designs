@@ -1,4 +1,7 @@
 #pragma once
+#include <bits/stdc++.h>
+
+using namespace std;
 
 class Player
 {
@@ -13,4 +16,6 @@ public:
     int getId() const { return id; }
     string getName() const { return name; }
     int getPosition() const { return position; }
+
+    void setPosition(int newPosition) { position = newPosition; }
 };
