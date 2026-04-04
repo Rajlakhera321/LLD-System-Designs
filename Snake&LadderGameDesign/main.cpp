@@ -1,9 +1,9 @@
 #include <bits/stdc++.h>
-#include "./Game.h"
-#include "interfaces/IDiceStrategy.h"
-#include "strategies/NormalDiceStrategy.h"
+#include "./interfaces/IDiceStrategy.h"
+#include "./strategies/diceStrategies/NormalDiceStrategy.h"
 #include "./models/Board.h"
 #include "./models/Player.h"
+#include "./GameService.h"
 
 using namespace std;
 
@@ -19,12 +19,19 @@ int main()
     board->addJump(19, 7);
     board->addJump(27, 1);
 
-    IDiceStrategy *diceStrategy = new NormalDiceStrategy(); // Use a normal dice strategy
+    queue<unique_ptr<Player> > players;
+    players.push(make_unique<Player>("Alice"));
+    players.push(make_unique<Player>("Bob"));
 
-    queue<Player *> players;
-    players.push(new Player(1, "Alice")); // Add player Alice
-    players.push(new Player(2, "Bob"));   // Add player Bob
+    unique_ptr<IDiceStrategy> diceStrategy = make_unique<NormalDiceStrategy>();
+    unique_ptr<IMoveStrategy> moveStrategy = make_unique<NormalMoveStrategy>();
+    unique_ptr<IWinningStrategy> winningStrategy = make_unique<ExactWinningStrategy>();
 
-    Game game(board, players, diceStrategy);
-    game.play();
+    unique_ptr<IGameObserver> consoleLogger = make_unique<ConsoleLogger>();
+
+    GameService gameService(make_unique<Board>(*board), move(players), move(diceStrategy), move(moveStrategy), move(winningStrategy));
+
+    gameService.addObserver(move(consoleLogger));
+
+    gameService.play();
 }

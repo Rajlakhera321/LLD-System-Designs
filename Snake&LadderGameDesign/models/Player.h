@@ -1,5 +1,6 @@
 #pragma once
 #include <bits/stdc++.h>
+#include "./IdGenerator.h"
 
 using namespace std;
 
@@ -11,7 +12,7 @@ private:
     int position;
 
 public:
-    Player(int playerId, string playerName) : id(playerId), name(playerName), position(0) {}
+    Player(string playerName) : id(IdGenerator::getNextPlayerId()), name(playerName), position(0) {}
 
     int getId() const { return id; }
     string getName() const { return name; }

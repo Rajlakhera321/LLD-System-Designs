@@ -8,7 +8,7 @@ class Board
 {
 private:
     int size;
-    vector<Cell *> cells;
+    vector<unique_ptr<Cell> > cells;
 
 public:
     Board(int s) : size(s)
@@ -16,23 +16,23 @@ public:
         cells.resize(s + 1);
         for (int i = 0; i <= s; i++)
         {
-            cells[i] = new Cell(i);
+            cells[i] = make_unique<Cell>(i);
         }
     }
 
     void addJump(int start, int end)
     {
-        cells[start]->setJump(new Jump(start, end));
+        cells[start]->setJump(make_unique<Jump>(start, end));
     }
 
     int getSize() const { return size; }
-    vector<Cell *> getCells() const { return cells; }
+    vector<unique_ptr<Cell> > getCells() const { return cells; }
 
-    int getNextPosition(int currentPosition)
+    int getNextPosition(int pos)
     {
-        if (cells[currentPosition] != NULL)
-            return cells[currentPosition]->getJump() != NULL ? cells[currentPosition]->getJump()->getEnd() : currentPosition;
+        if (cells[pos]->getJump())
+            return cells[pos]->getJump()->getEnd();
 
-        return currentPosition;
+        return pos;
     }
 };

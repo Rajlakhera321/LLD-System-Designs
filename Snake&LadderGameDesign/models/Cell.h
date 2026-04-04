@@ -8,12 +8,12 @@ class Cell
 {
 private:
     int position;
-    Jump *jump;
+    unique_ptr<Jump> jump;
 
 public:
     Cell(int pos) : position(pos), jump(nullptr) {}
 
     int getPosition() const { return position; }
-    Jump *getJump() const { return jump; }
-    void setJump(Jump *j) { jump = j; }
+    Jump *getJump() const { return jump.get(); }
+    void setJump(unique_ptr<Jump> j) { jump = move(j); }
 };
