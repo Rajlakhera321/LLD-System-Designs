@@ -7,6 +7,6 @@ using namespace std;
 class IGameObserver
 {
 public:
-    virtual void onMove(unique_ptr<Move> move) = 0;
+    virtual void onMove(const Move &move) = 0;
     virtual ~IGameObserver() {}
 };

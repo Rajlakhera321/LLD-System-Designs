@@ -7,6 +7,6 @@ using namespace std;
 class IMoveStrategy
 {
 public:
-    virtual int applyMove(int pos, unique_ptr<Board> board) = 0;
+    virtual int applyMove(int pos, Board *board) = 0;
     virtual ~IMoveStrategy() {}
 };

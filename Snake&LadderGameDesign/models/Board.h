@@ -26,7 +26,7 @@ public:
     }
 
     int getSize() const { return size; }
-    vector<unique_ptr<Cell> > getCells() const { return cells; }
+    const vector<unique_ptr<Cell> > &getCells() const { return cells; }
 
     int getNextPosition(int pos)
     {

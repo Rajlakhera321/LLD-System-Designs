@@ -13,7 +13,7 @@ using namespace std;
 class GameService
 {
 private:
-    Board *board;
+    unique_ptr<Board> board;
     GameEnum gameState;
     queue<unique_ptr<Player> > players;
 
@@ -34,12 +34,12 @@ public:
 
     void addObserver(unique_ptr<IGameObserver> obs)
     {
-        observer.push_back(move(obs));
+        observers.push_back(move(obs));
     }
 
-    void notify(unique_ptr<Move> move)
+    void notify(const Move &move)
     {
-        for (auto obs : observers)
+        for (auto &obs : observers)
             obs->onMove(move);
     }
 
@@ -47,26 +47,32 @@ public:
     {
         while (gameState == GameEnum::INPROGRESS)
         {
-            unique_ptr<Player> currentPlayer = move(players.front()); // For simplicity, we are just using the first player
+            auto currentPlayer = move(players.front());
             players.pop();
-            players.push(move(currentPlayer)); // Move the player to the back of the queue
 
             int diceRoll = diceStrategy->roll();
             int currentPosition = currentPlayer->getPosition();
 
-            int nextPosition = board->getNextPosition(currentPosition, diceRoll, board->getSize()); // Check for snakes or ladders
-            next = moveStrategy->applyMove(next, board.get());
+            int nextPosition = winningStrategy->getNextPosition(
+                currentPosition,
+                diceRoll,
+                board->getSize());
 
-            Move move(move(currentPlayer), diceRoll, currentPosition, nextPosition);
-            currentPosition->setPosition(nextPosition);
+            nextPosition = moveStrategy->applyMove(nextPosition, board.get());
 
-            notify(&move);
+            currentPlayer->setPosition(nextPosition);
+
+            Move moveObj(currentPlayer.get(), diceRoll, currentPosition, nextPosition);
+
+            notify(moveObj);
 
             if (nextPosition == board->getSize())
             {
                 cout << currentPlayer->getName() << " wins!" << endl;
                 gameState = GameEnum::FINISHED;
             }
+
+            players.push(move(currentPlayer));
         }
     }
 };

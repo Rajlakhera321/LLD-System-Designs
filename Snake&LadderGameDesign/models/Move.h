@@ -1,20 +1,21 @@
 #pragma once
 #include <bits/stdc++.h>
+#include "./Player.h"
 
 using namespace std;
 
 class Move
 {
 private:
-    unique_ptr<Player> player;
+    Player *player;
     int diceRoll;
     int from;
     int to;
 
 public:
-    Move(unique_ptr<Player> p, int roll, int f, int t) : player(move(p)), diceRoll(roll), from(f), to(t) {}
+    Move(Player *p, int roll, int f, int t) : player(p), diceRoll(roll), from(f), to(t) {}
 
-    unique_ptr<Player> getPlayer() const { return move(player); }
+    Player *getPlayer() const { return player; }
 
     int getDiceRoll() const { return diceRoll; }
 

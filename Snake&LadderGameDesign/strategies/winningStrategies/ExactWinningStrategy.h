@@ -1,6 +1,6 @@
 #pragma once
 #include <bits/stdc++.h>
-#include "../interfaces/IWinningStrategy.h"
+#include "../../interfaces/IWinningStrategy.h"
 
 using namespace std;
 
