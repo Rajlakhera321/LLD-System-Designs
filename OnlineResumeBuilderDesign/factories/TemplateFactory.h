@@ -10,18 +10,13 @@ using namespace std;
 class TemplateFactory
 {
 public:
-    ITemplateInterface createTemplate(const string &type)
+    unique_ptr<ITemplateInterface> createTemplate(const string &type)
     {
-        switch (type)
-        {
-        case "modern":
+        if (type == 'modern')
             return new ModernTemplate();
-        case "classic":
+        else if (type == 'classic')
             return new ClassicTemplate();
-        case "minimal":
+        else if (type == 'minimal')
             return new MinimalTemplate();
-        default:
-            return nullptr;
-        }
     }
 };

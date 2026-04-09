@@ -23,4 +23,4 @@ public:
             cout << endl; // Add a newline between sections
         }
     }
-}
+};

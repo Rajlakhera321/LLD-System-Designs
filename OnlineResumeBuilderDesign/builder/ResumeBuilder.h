@@ -8,12 +8,9 @@ using namespace std;
 class ResumeBuilder
 {
 private:
-    Resume &resume;
+    unique_ptr<Resume> resume;
+    BasicDetials *basicDetails;
 
 public:
-    ResumeBuilder(Resume &resume) : resume(resume) {};
-
-    void addSection(Section &section)
-    {
-    }
+    ResumeBuilder(unique_ptr<Resume> resume) : resume(move(resume)) {};
 }

@@ -7,16 +7,13 @@
 class ExportFactory
 {
 public:
-    static IExportInterface createExport(const string &type)
+    unique_ptr<IExportInterface> createExport(const string &type)
     {
-        switch (type)
-        {
-        case "pdf":
-            return new PdfStrategy();
-        case "doc":
-            return new DocStrategy();
-        default:
+        if (type == 'pdf')
+            return unique_ptr<PdfStrategy>();
+        else if (type == 'doc')
+            return unique_ptr<DocStrategy>();
+        else
             return nullptr;
-        }
     }
 };
