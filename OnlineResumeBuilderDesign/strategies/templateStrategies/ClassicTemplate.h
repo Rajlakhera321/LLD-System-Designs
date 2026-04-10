@@ -9,5 +9,7 @@ class ClassicTemplate : public ITemplateInterface
 public:
     void render(Resume &resume) override
     {
+        cout << "---- Classic Template ----\n";
+        resume.render();
     }
 };

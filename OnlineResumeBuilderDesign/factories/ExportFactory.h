@@ -7,12 +7,12 @@
 class ExportFactory
 {
 public:
-    unique_ptr<IExportInterface> createExport(const string &type)
+    static unique_ptr<IExportInterface> createExport(const string &type)
     {
-        if (type == 'pdf')
-            return unique_ptr<PdfStrategy>();
-        else if (type == 'doc')
-            return unique_ptr<DocStrategy>();
+        if (type == "pdf")
+            return make_unique<PdfStrategy>();
+        else if (type == "doc")
+            return make_unique<DocStrategy>();
         else
             return nullptr;
     }

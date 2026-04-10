@@ -10,13 +10,15 @@ using namespace std;
 class TemplateFactory
 {
 public:
-    unique_ptr<ITemplateInterface> createTemplate(const string &type)
+    static unique_ptr<ITemplateInterface> createTemplate(const string &type)
     {
-        if (type == 'modern')
-            return new ModernTemplate();
-        else if (type == 'classic')
-            return new ClassicTemplate();
-        else if (type == 'minimal')
-            return new MinimalTemplate();
+        if (type == "modern")
+            return make_unique<ModernTemplate>();
+        else if (type == "classic")
+            return make_unique<ClassicTemplate>();
+        else if (type == "minimal")
+            return make_unique<MinimalTemplate>();
+
+        return nullptr;
     }
 };

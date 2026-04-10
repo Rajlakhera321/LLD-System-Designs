@@ -1,6 +1,7 @@
 #pragma once
 #include <bits/stdc++.h>
 #include "../interfaces/Section.h"
+#include "../structs/BasicDetailDto.h"
 
 using namespace std;
 
@@ -19,6 +20,19 @@ public:
     void addSocialLink(unique_ptr<string> link)
     {
         socialLinks.push_back(move(link));
+    }
+    SectionType getType() override
+    {
+        return SectionType::BASIC;
+    }
+
+    void update(void *data) override
+    {
+        BasicDetailDto *dto = static_cast<BasicDetailDto *>(data);
+
+        name = dto->name;
+        email = dto->email;
+        phone = dto->phone;
     }
 
     void render() override
