@@ -5,7 +5,8 @@ using namespace std;
 
 class Node
 {
-private:
+public:
+    Node *head;
     int key;
     int value;
 
@@ -13,4 +14,4 @@ private:
     Node *next;
 
     int freq;
-}
+};
