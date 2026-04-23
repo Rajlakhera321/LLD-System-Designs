@@ -6,13 +6,11 @@ using namespace std;
 class Node
 {
 public:
-    Node *head;
-
     int key;
     int value;
 
     Node *prev;
     Node *next;
 
-    int freq;
+    Node(int k, int v) : key(k), value(v), prev(NULL), next(NULL) {}
 };

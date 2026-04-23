@@ -1,5 +1,6 @@
 #pragma once
 #include <bits/stdc++.h>
+#include "./Node.h"
 
 using namespace std;
 
@@ -9,7 +10,9 @@ private:
     unordered_map<int, Node *> mp;
 
 public:
-    int get(int key);
+    Node *get(int key);
     void put(int key, int value);
     void remove(int key);
+    bool exists(int key);
+    int size();
 };

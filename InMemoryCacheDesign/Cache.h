@@ -10,11 +10,12 @@ using namespace std;
 class Cache
 {
 private:
-    Storage storage;
-
-    LRU eviction;
+    Storage *storage;
+    Eviction *eviction;
+    int capacity;
 
 public:
+    Cache(int capacity, Eviction *eviction, Storage *storage) : capacity(capacity), eviction(eviction), storage(storage) {};
     int get(int key);
     void put(int key, int value);
     void remove(int key);
