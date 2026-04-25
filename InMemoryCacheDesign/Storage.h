@@ -11,7 +11,7 @@ private:
 
 public:
     Node *get(int key);
-    void put(int key, int value);
+    void put(int key, Node *node);
     void remove(int key);
     bool exists(int key);
     int size();

@@ -12,7 +12,7 @@ private:
     Node *tail;
 
 public:
-    LRU();
+    LRU() : head(NULL), tail(NULL) {};
     void addNode(Node *node) override;
     void keyAccessed(Node *node) override;
     Node *evict() override;

@@ -8,9 +8,9 @@ Node *Storage::get(int key)
     return NULL;
 }
 
-void Storage::put(int key, int value)
+void Storage::put(int key, Node *node)
 {
-    mp[key] = value;
+    mp[key] = node;
 }
 
 void Storage::remove(int key)
