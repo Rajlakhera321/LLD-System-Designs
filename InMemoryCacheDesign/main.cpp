@@ -1,14 +1,16 @@
 #include <bits/stdc++.h>
-#include "./Cache.h"
-#include "./LRU.h"
-#include "./Storage.h"
-#include "./Node.h"
-#include "./Eviction.h"
+#include "./cache/Cache.h"
+#include "./eviction/LRU.h"
+#include "./storage/IStorage.h"
+#include "./models/Node.h"
+#include "./eviction/EvictionPolicy.h"
+#include "./factory/EvictionFactory.h"
+#include "./storage/HashMapStorage.h"
 
 int main()
 {
-    Storage *storage = new Storage();
-    Eviction *eviction = new LRU();
+    IStorage *storage = new HashMapStorage();
+    EvictionPolicy *eviction = EvictionFactory::createEvictionPolicy("LRU");
     Cache cache(2, eviction, storage);
 
     cache.put(1, 1);

@@ -1,11 +1,11 @@
 #pragma once
 #include <bits/stdc++.h>
-#include "./Eviction.h"
-#include "./Node.h"
+#include "./EvictionPolicy.h"
+#include "../models/Node.h"
 
 using namespace std;
 
-class LRU : public Eviction
+class LRU : public EvictionPolicy
 {
 private:
     Node *head;
