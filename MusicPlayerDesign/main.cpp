@@ -11,7 +11,6 @@
 int main()
 {
     PlayList playList;
-    
     playList.addSong(Song("Shape of You", "Ed Sheeran", 240));
     playList.addSong(Song("Blinding Lights", "The Weeknd", 200));
     playList.addSong(Song("Levitating", "Dua Lipa", 220));
