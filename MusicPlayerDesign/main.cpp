@@ -8,6 +8,8 @@
 #include "./enums/PlayState.h"
 #include "./interfaces/IAudioPlayer.h"
 #include "./interfaces/IObserver.h"
+#include "./interfaces/IPlayStrategy.h"
+#include "./factories/PlaySongFactory.h"
 
 int main()
 {
@@ -16,10 +18,11 @@ int main()
     playList.addSong(Song("Blinding Lights", "The Weeknd", 200));
     playList.addSong(Song("Levitating", "Dua Lipa", 220));
 
+    std::unique_ptr<IPlayStrategy> playStrategy = PlaySongFactory::createPlayStrategy("sequential");
     AudioPlayer audioPlayer;
     NotifyUser notifyUser;
 
-    MusicController musicController(&playList, &audioPlayer, &notifyUser);
+    MusicController musicController(playList, audioPlayer, notifyUser, std::move(playStrategy));
 
     musicController.play();
     musicController.next();

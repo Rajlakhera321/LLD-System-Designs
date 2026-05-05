@@ -19,6 +19,19 @@ void PlayList::removeSong(const string &songName)
     }
 }
 
+int PlayList::getSongCount() const
+{
+    return songs.size();
+}
+
+Song *PlayList::getSong(int index)
+{
+    if (index < 0 || index >= songs.size())
+        return nullptr;
+
+    return &songs[index];
+}
+
 Song *PlayList::getCurrentSong()
 {
     if (songs.empty())

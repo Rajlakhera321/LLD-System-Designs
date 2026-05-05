@@ -5,19 +5,30 @@
 #include "./enums/PlayState.h"
 #include "./interfaces/IObserver.h"
 #include "./playList/PlayList.h"
+#include "./interfaces/IPlayStrategy.h"
 
 using namespace std;
 
 class MusicController
 {
 private:
-    PlayList *playList;
-    IAudioPlayer *audioPlayer;
+    PlayList &playList;
+    IAudioPlayer &audioPlayer;
     PlayState playerState;
-    IObserver *observer;
+    IObserver &observer;
+    std::unique_ptr<IPlayStrategy> playStrategy;
 
 public:
-    MusicController(PlayList *pl, IAudioPlayer *ap, IObserver *obs) : playList(pl), audioPlayer(ap), playerState(PlayState::Stopped), observer(obs) {}
+    MusicController(
+        PlayList &pl,
+        IAudioPlayer &ap,
+        IObserver &obs,
+        std::unique_ptr<IPlayStrategy> ps)
+        : playList(pl),
+          audioPlayer(ap),
+          playerState(PlayState::Stopped),
+          observer(obs),
+          playStrategy(std::move(ps)) {}
 
     void play();
 

@@ -17,6 +17,10 @@ public:
 
     void removeSong(const string &songName);
 
+    int getSongCount() const;
+
+    Song *getSong(int index);
+
     Song *getCurrentSong();
 
     Song *playNext();

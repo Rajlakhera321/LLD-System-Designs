@@ -2,6 +2,7 @@
 #include <bits/stdc++.h>
 #include "./interfaces/IAudioPlayer.h"
 #include "./enums/PlayState.h"
+#include "./interfaces/IPlayStrategy.h"
 
 using namespace std;
 
