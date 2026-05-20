@@ -3,10 +3,12 @@
 void MusicController::play()
 {
     Song *currentSong = playList.getCurrentSong();
+    
     if (!currentSong) {
         observer.notify("No songs in the playlist.");
         return;
     }
+
     observer.notify(
         "Now playing: " +
         currentSong->getName() +
