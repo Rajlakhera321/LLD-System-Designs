@@ -10,4 +10,7 @@ private:
 
 public:
     LeakBucket(int capacity, int leakRate) : capacity(capacity), leakRate(leakRate) {}
-}
+
+    void addRequest(int userId, int timestamp, std::string endpoint);
+    bool isRateLimited(int userId, int timestamp, std::string endpoint);
+};
