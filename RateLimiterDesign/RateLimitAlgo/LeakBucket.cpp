@@ -3,14 +3,12 @@
 void LeakBucket::addRequest(int userId, int timestamp, std::string endpoint)
 {
     // Remove leaked requests
-    while (!userBuckets[userId].empty() && userBuckets[userId].front() <= timestamp - 1000 / leakRate)
-    {
+    while (!userBuckets[userId].empty() && userBuckets[userId].front() <= timestamp - 1000 / leakRate) {
         userBuckets[userId].pop();
     }
 
     // Add new request if bucket is not full
-    if (userBuckets[userId].size() < capacity)
-    {
+    if (userBuckets[userId].size() < capacity) {
         userBuckets[userId].push(timestamp);
     }
 }
@@ -18,8 +16,7 @@ void LeakBucket::addRequest(int userId, int timestamp, std::string endpoint)
 bool LeakBucket::isRateLimited(int userId, int timestamp, std::string endpoint)
 {
     // Remove leaked requests
-    while (!userBuckets[userId].empty() && userBuckets[userId].front() <= timestamp - 1000 / leakRate)
-    {
+    while (!userBuckets[userId].empty() && userBuckets[userId].front() <= timestamp - 1000 / leakRate) {
         userBuckets[userId].pop();
     }
 
