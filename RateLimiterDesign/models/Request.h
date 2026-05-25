@@ -7,10 +7,10 @@ private:
     int userId;
     int timestamp;
     int requestCount;
-    string endpoint;
+    std::string endpoint;
 
 public:
-    Request(int userId, int timestamp, string endpoint) : userId(userId), timestamp(timestamp), requestCount(1), endpoint(endpoint) {}
+    Request(int userId, int timestamp, std::string endpoint) : userId(userId), timestamp(timestamp), requestCount(1), endpoint(endpoint) {}
 
     int getUserId() const;
 
@@ -20,5 +20,5 @@ public:
 
     void incrementRequestCount();
 
-    string getEndpoint() const;
+    std::string getEndpoint() const;
 };

@@ -20,7 +20,7 @@ void Request::incrementRequestCount()
     requestCount++;
 }
 
-string Request::getEndpoint() const
+std::string Request::getEndpoint() const
 {
     return endpoint;
 }
