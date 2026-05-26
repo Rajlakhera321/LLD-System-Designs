@@ -12,7 +12,14 @@ int main()
     RateLimiterService rateLimiterService(rateLimiter);
 
     // Simulate requests
-    std::vector<int> timestamps = {1000, 1500, 2000, 2500, 3000, 3500, 2800, 4000, 4500, 5000};
+    std::vector<int> timestamps = {
+        1000,
+        1100,
+        1200,
+        1300,
+        1400,
+        1500,
+        1600};
 
     for (int timestamp : timestamps)
     {
