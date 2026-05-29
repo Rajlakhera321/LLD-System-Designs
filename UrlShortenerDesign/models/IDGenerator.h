@@ -7,10 +7,7 @@ private:
     int id;
 
 public:
-    static int generateId()
-    {
-        return ++id;
-    }
+    static int generateId() {}
 };
 
 int IDGenerator::id = 0;
