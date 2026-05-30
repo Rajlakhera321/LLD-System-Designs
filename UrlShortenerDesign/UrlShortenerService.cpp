@@ -16,15 +16,26 @@ std::string UrlShortenerService::shortenUrl(const std::string &longUrl)
     urlMap[shortUrl] = longUrl;
     reverseUrlMap[longUrl] = shortUrl;
 
-    return shortUrl;
+    // Store the URL mapping in the storage
+    storage->saveUrlMapping(shortUrl, longUrl);
+
+    return domain + shortUrl;
 }
 
 std::string UrlShortenerService::getLongUrl(const std::string &shortUrl)
 {
     // Check if the short URL exists in the map
-    if (urlMap.find(shortUrl) != urlMap.end())
+    std::string shortCode = shortUrl;
+
+    if (shortUrl.find(domain) == 0)
     {
-        return urlMap[shortUrl];
+        shortCode = shortUrl.substr(domain.length());
     }
-    return ""; // Return an empty string if the short URL does not exist
+
+    if (urlMap.find(shortCode) != urlMap.end())
+    {
+        return urlMap[shortCode];
+    }
+
+    return "";
 }

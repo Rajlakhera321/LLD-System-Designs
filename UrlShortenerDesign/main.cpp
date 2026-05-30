@@ -1,9 +1,13 @@
 #include "./UrlShortenerService.h"
+#include "./storages/DBStorage.h"
+#include "./Base62Encoder/Base62Encoder.h"
+#include "./factories/StorageFactoryCreation.h"
 
 int main()
 {
-    Base62Encoder encoder;
-    UrlShortenerService urlShortener(&encoder);
+    Base62Encoder *encoder = new Base62Encoder();
+    IStorage *storage = StorageFactoryCreation::createStorage("DB");
+    UrlShortenerService urlShortener(encoder, storage);
 
     std::string longUrl1 = "https://www.example.com/some/long/url";
     std::string longUrl2 = "https://www.anotherexample.com/another/long/url";

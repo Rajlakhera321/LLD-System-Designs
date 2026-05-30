@@ -13,17 +13,17 @@ private:
     long long clicks;
 
 private:
-    UrlModel(std::string originalUrl, std::string shortUrl) {}
+    UrlModel(std::string originalUrl, std::string shortUrl);
 
-    std::string getOriginalUrl() {}
+    std::string getOriginalUrl();
 
-    std::string getShortUrl() {}
+    std::string getShortUrl();
 
-    long long getExpiryTime() {}
+    long long getExpiryTime();
 
-    long long getCreatedAt() {}
+    long long getCreatedAt();
 
-    long long getClicks() {}
+    long long getClicks();
 
-    void incrementClicks() {}
+    void incrementClicks();
 };

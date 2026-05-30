@@ -8,5 +8,5 @@ private:
     const std::string base62Chars = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 public:
-    std::string encode(long long id) override {}
+    std::string encode(long long id) override;
 };

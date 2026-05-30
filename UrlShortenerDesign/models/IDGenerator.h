@@ -4,10 +4,8 @@
 class IDGenerator
 {
 private:
-    int id;
+    static int id;
 
 public:
-    static int generateId() {}
+    static int generateId();
 };
-
-int IDGenerator::id = 0;
