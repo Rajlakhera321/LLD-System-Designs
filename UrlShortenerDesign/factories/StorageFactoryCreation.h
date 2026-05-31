@@ -4,8 +4,7 @@
 #include "../storages/DBStorage.h"
 #include "../storages/RedisStorage.h"
 
-class StorageFactoryCreation
-{
+class StorageFactoryCreation {
 public:
     static IStorage *createStorage(const std::string &type);
 };
