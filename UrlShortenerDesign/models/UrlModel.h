@@ -12,7 +12,7 @@ private:
     long long createdAt;
     long long clicks;
 
-private:
+public:
     UrlModel(std::string originalUrl, std::string shortUrl);
 
     std::string getOriginalUrl();
