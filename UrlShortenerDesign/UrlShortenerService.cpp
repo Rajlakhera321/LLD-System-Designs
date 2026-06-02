@@ -13,11 +13,8 @@ std::string UrlShortenerService::shortenUrl(const std::string &longUrl)
     std::string shortUrl = encoder->encode(id);
 
     // Store the mapping between short URL and long URL
-    urlMap[shortUrl] = longUrl;
-    reverseUrlMap[longUrl] = shortUrl;
-
-    // Store the URL mapping in the storage
-    storage->saveUrlMapping(shortUrl, longUrl);
+    dbStorage->saveUrlMapping(shortUrl, longUrl);
+    redisStorage->saveUrlMapping(shortUrl, longUrl);
 
     return domain + shortUrl;
 }
@@ -32,9 +29,19 @@ std::string UrlShortenerService::getLongUrl(const std::string &shortUrl)
         shortCode = shortUrl.substr(domain.length());
     }
 
-    if (urlMap.find(shortCode) != urlMap.end())
+    // Check if the short URL exists in the database
+    std::string longUrl = redisStorage->getOriginalUrl(shortCode);
+
+    if (!longUrl.empty())
     {
-        return urlMap[shortCode];
+        return longUrl;
+    }
+
+    longUrl = dbStorage->getOriginalUrl(shortCode);
+
+    if (!longUrl.empty())
+    {
+        return longUrl;
     }
 
     return "";
