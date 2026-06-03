@@ -3,9 +3,12 @@
 std::string UrlShortenerService::shortenUrl(const std::string &longUrl)
 {
     // Check if the long URL has already been shortened
-    if (reverseUrlMap.find(longUrl) != reverseUrlMap.end())
+    std::string existingShortUrl =
+        dbStorage->getShortUrl(longUrl);
+
+    if (!existingShortUrl.empty())
     {
-        return reverseUrlMap[longUrl];
+        return domain + existingShortUrl;
     }
 
     // Generate a unique ID and encode it to get the short URL
@@ -41,6 +44,9 @@ std::string UrlShortenerService::getLongUrl(const std::string &shortUrl)
 
     if (!longUrl.empty())
     {
+        redisStorage->saveUrlMapping(
+            shortCode,
+            longUrl);
         return longUrl;
     }
 

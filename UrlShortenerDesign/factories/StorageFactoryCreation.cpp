@@ -1,12 +1,10 @@
 #include "./StorageFactoryCreation.h"
 
-IStorage *StorageFactoryCreation::createStorage(const std::string &type)
+std::unique_ptr<IStorage> StorageFactoryCreation::createStorage(const std::string &type)
 {
-    if (type == "DB") {
-        return new DBStorage();
-    }
-    else if (type == "Redis") {
-        return new RedisStorage();
+    if (type == "DB")
+    {
+        return std::make_unique<DBStorage>();
     }
     return nullptr;
 }

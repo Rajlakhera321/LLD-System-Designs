@@ -1,8 +1,8 @@
 #pragma once
 #include "bits/stdc++.h"
-#include "../interfaces/IStorage.h"
+#include "../interfaces/ICache.h"
 
-class RedisStorage : public IStorage
+class RedisStorage : public ICache
 {
 private:
     std::unordered_map<std::string, std::string> urlMapping;

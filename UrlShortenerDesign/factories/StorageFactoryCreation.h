@@ -2,9 +2,9 @@
 #include "bits/stdc++.h"
 #include "../interfaces/IStorage.h"
 #include "../storages/DBStorage.h"
-#include "../storages/RedisStorage.h"
 
-class StorageFactoryCreation {
+class StorageFactoryCreation
+{
 public:
-    static IStorage *createStorage(const std::string &type);
+    static std::unique_ptr<IStorage> createStorage(const std::string &type);
 };
