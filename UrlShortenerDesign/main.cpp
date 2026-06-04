@@ -6,8 +6,8 @@
 int main()
 {
     std::unique_ptr<Base62Encoder> encoder = std::make_unique<Base62Encoder>();
-    std::unique_ptr<IStorage> storage = StorageFactoryCreation::createStorage("DB");   // Assuming you have a DBStorage implementation
-    std::unique_ptr<ICache> redisStorage = CacheFactoryCreation::createCache("Redis"); // Assuming you have a RedisStorage implementation
+    std::unique_ptr<IStorage> storage = StorageFactoryCreation::createStorage("DB");
+    std::unique_ptr<ICache> redisStorage = CacheFactoryCreation::createCache("Redis");s
     UrlShortenerService urlShortener(std::move(encoder), std::move(storage), std::move(redisStorage));
 
     std::string longUrl1 = "https://www.example.com/some/long/url";
