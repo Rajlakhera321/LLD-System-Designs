@@ -13,6 +13,5 @@ void File::display(int depth) const
     {
         std::cout << "  ";
     }
-    
     std::cout << "- " << name << " (" << size << " KB)" << std::endl;
 }
