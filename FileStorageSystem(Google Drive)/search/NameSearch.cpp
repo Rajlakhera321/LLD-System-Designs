@@ -1,14 +1,9 @@
 #include "./NameSearch.h"
 
-std::vector<std::string> NameSearch::search(const std::string &query)
+std::vector<shared_ptr<IDriveItems> > NameSearch::search(shared_ptr<Folder> root, const std::string &query)
 {
-    std::vector<std::string> results;
+    std::vector<shared_ptr<IDriveItems> > results;
 
-    std::string content = storage->readFile(query);
-    if (!content.empty())
-    {
-        results.push_back(query);
-    }
-
+    // Implementation for searching by name
     return results;
 }

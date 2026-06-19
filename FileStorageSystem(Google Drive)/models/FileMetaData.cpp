@@ -1,6 +1,6 @@
 #include "./FileMetaData.h"
 
-FileMetaData::FileMetaData(const std::string &name, int size, const std::string &type, File *file)
+FileMetaData::FileMetaData(const std::string &name, int size, const std::string &type)
     : name(name), size(size), type(type), file(file) {}
 
 std::string FileMetaData::getName() const
@@ -16,9 +16,4 @@ int FileMetaData::getSize() const
 std::string FileMetaData::getType() const
 {
     return type;
-}
-
-File *FileMetaData::getFile() const
-{
-    return file;
 }

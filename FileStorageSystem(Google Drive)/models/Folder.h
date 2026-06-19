@@ -7,12 +7,12 @@ class Folder : public IDriveItems
 {
 private:
     std::string name;
-    std::vector<IDriveItems *> items;
+    std::vector<std::shared_ptr<IDriveItems> > items;
 
 public:
     Folder(const std::string &name);
 
-    void addItem(IDriveItems *item);
+    void addItem(std::shared_ptr<IDriveItems> item);
 
     std::string getName() const override;
 

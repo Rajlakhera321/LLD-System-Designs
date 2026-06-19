@@ -2,7 +2,7 @@
 
 Folder::Folder(const std::string &name) : name(name) {}
 
-void Folder::addItem(IDriveItems *item)
+void Folder::addItem(std::shared_ptr<IDriveItems> item)
 {
     items.push_back(item);
 }

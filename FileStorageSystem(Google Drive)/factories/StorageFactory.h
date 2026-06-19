@@ -8,5 +8,5 @@
 class StorageFactory
 {
 public:
-    static IStorage *createStorage(const std::string &type);
+    static std::unique_ptr<IStorage> createStorage(const std::string &type);
 };

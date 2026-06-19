@@ -6,9 +6,9 @@
 class UploadService
 {
 private:
-    IStorage *storage;
+    std::unique_ptr<IStorage> storage;
 
 public:
-    UploadService(IStorage *stor);
+    UploadService(std::unique_ptr<IStorage> stor);
     void upload(const std::string &path, const std::string &content);
 };

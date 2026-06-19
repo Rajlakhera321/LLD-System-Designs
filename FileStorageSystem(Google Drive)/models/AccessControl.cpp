@@ -1,11 +1,11 @@
 #include "./AccessControl.h"
 
-void AccessControl::grantPermission(const std::string &user, const std::string &permission)
+void AccessControl::grantPermission(const std::string &user, const Permission &permission)
 {
     permissions[user].insert(permission);
 }
 
-void AccessControl::revokePermission(const std::string &user, const std::string &permission)
+void AccessControl::revokePermission(const std::string &user, const Permission &permission)
 {
     if (permissions.find(user) != permissions.end())
     {
@@ -17,7 +17,7 @@ void AccessControl::revokePermission(const std::string &user, const std::string 
     }
 }
 
-bool AccessControl::hasPermission(const std::string &user, const std::string &permission) const
+bool AccessControl::hasPermission(const std::string &user, const Permission &permission) const
 {
     auto it = permissions.find(user);
     if (it != permissions.end())

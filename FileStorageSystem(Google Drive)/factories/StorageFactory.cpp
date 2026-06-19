@@ -1,14 +1,14 @@
 #include "./StorageFactory.h"
 
-IStorage *StorageFactory::createStorage(const std::string &type)
+std::unique_ptr<IStorage> StorageFactory::createStorage(const std::string &type)
 {
     if (type == "local")
     {
-        return new LocalStorage();
+        return std::unique_ptr<IStorage>(new LocalStorage());
     }
     else if (type == "s3")
     {
-        return new S3Storage();
+        return std::unique_ptr<IStorage>(new S3Storage());
     }
     else
     {
