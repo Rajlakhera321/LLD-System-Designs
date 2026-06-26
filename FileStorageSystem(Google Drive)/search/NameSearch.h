@@ -9,5 +9,4 @@ class NameSearch : public ISearch
 {
 public:
     std::vector<shared_ptr<IDriveItems> > search(shared_ptr<Folder> root, const std::string &query) override;
-    
 };
